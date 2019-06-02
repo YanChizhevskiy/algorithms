@@ -1,23 +1,33 @@
-# 6. В программе генерируется случайное целое число от 0 до 100.
-# Пользователь должен его отгадать не более чем за 10 попыток.
-# После каждой неудачной попытки должно сообщаться,
-# больше или меньше введенное пользователем число, чем то, что загадано.
-# Если за 10 попыток число не отгадано, вывести ответ.
+#В одномерном массиве найти сумму элементов, находящихся между минимальным и максимальным элементами.
+# Сами минимальный и максимальный элементы в сумму не включать.
 
-from random import randint
-n = randint(0, 100)
-i = 1
-x = 10
-print(f"Отгадайте число от 0 до 100")
-while i <= 10:
-    a = int(input(f'{i}-я попытка: '))
-    if a > n:
-        print('Загаданное число меньше')
-    elif a < n:
-        print('Загаданное число больше')
-    else:
-        print('Вы угадали!')
-        break
-    i += 1
+import random
+
+size = 10
+min_item = 1
+max_item = 10
+
+a = list(random.randint(min_item, max_item) for _ in range(size))
+print(f'В массиве {a}')
+min_num = a[0]
+max_num = a[0]
+min_ind = 0
+max_ind = 0
+
+for i in list(range(size)):
+    if min_num > a[i]:
+        min_num = a[i]
+        min_ind = i
+for j in list(range(size)):
+    if max_num < a[j]:
+        max_num = a[j]
+        max_ind = j
+print(f'минимальное число {min_num} с индексом {min_ind}; максимальное - {max_num} с индексом {max_ind}')
+if min_ind < max_ind:
+    a = a[min_ind + 1 : max_ind]
 else:
-    print(f'Вы исчерпали 10 попыток. Правильный ответ {n}')
+    a = a[max_ind + 1: min_ind]
+sum_a = 0
+for j in a:
+    sum_a += j
+print(f'Сумма чисел в массиве между - {sum_a}')

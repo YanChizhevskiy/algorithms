@@ -1,9 +1,22 @@
-# 4. Найти сумму n элементов следующего ряда чисел: 1, -0.5, 0.25, -0.125,…
-# Количество элементов (n) вводится с клавиатуры.
-a = int(input('Введите количество раз деления числа 1 на -2: '))
-b = 1
-s = 0
-for i in range(a):
-    s += b
-    b /= -2
-print(s)
+# Определить, какое число в массиве встречается чаще всего.
+
+import random
+
+size = 10
+min_item = 1
+max_item = 5
+
+a = list(random.randint(min_item, max_item) for _ in range(size))
+print(a)
+a_set = set(a)
+
+most_com = 0
+qty_most_com = 0
+
+for i in a_set:
+    qty = a.count(i)
+    if qty > qty_most_com:
+        qty_most_com = qty
+        most_com = i
+
+print(most_com)
